@@ -1,60 +1,35 @@
 var mongoose = require('mongoose')
 var Schema = mongoose.Schema;
 
-var tourPlanSchema = new Schema({
-    planId: {
+var productSchema = new Schema({
+    category: {
         type: String,
-        require: true
+        required: true,
+        trim: true
     },
-    planName: {
+    brand: {
         type: String,
-        require: true
+        required: true,
+        trim: true
     },
-    destination: {
-        type: Array,
-        require: true
-    },
-
-    rating: {
-        type: Number,
-        require: true
+    product_name: {
+        type: String,
+        required: true,
+        trim: true
     },
     price: {
         type: Number,
-        require: true
+        required: true,
+        trim: true
     },
-    img: {
+    band_colour: {
         type: String,
-        require: true
-    },
-
-    activity: {
-        type: Array,
-        require: true
-    },
-
-    duration: {
-        type: Number,
-        require: true
-    },
-
-    max_travellers: {
-        type: Number,
-        require: true
-    },
-
-    payment_method: {
-        type: String,
-        require: true
-    },
-
-    guideId: {
-        type: Object,
-        require: true
-    },
+        required: true,
+        trim: true
+    }
 
     
 
 })
 
-module.exports = mongoose.model('tourPlan', tourPlanSchema)
+module.exports = mongoose.model('productModel', productSchema,'products')

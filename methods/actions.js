@@ -30,7 +30,7 @@ var functions = {
           !req.body.product_name ||
           !req.body.price ||
           !req.body.band_colour ||
-          !req.body.quantity
+          !req.body.quantity || !req.body.seller
 
         ) {
           res.json({ success: false, msg: "Enter all fields" });
@@ -42,6 +42,7 @@ var functions = {
             price: req.body.price,
             band_colour: req.body.band_colour,
             quantity: req.body.quantity,
+            seller: req.body.seller,
             
           });
           newProduct.save(function (err, newProduct) {
@@ -83,6 +84,21 @@ var functions = {
       
         
           },
+
+    increaseQuantity: async function (req, res) {
+            product.updateOne({ _id: req.params.id}, { $inc: {quantity:+(req.params.quantity)}}, function(
+              err,
+              result
+            ) {
+              if (err) {
+                res.send(err);
+              } else {
+                res.json(result);
+              }
+            });
+            
+              
+                },      
 
     deleteProduct: async function (req, res) {
             try {           

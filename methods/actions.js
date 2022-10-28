@@ -29,7 +29,8 @@ var functions = {
           !req.body.brand ||
           !req.body.product_name ||
           !req.body.price ||
-          !req.body.band_colour 
+          !req.body.band_colour ||
+          !req.body.quantity
 
         ) {
           res.json({ success: false, msg: "Enter all fields" });
@@ -39,7 +40,8 @@ var functions = {
             brand: req.body.brand,
             product_name: req.body.product_name,
             price: req.body.price,
-            band_colour: req.body.band_colour
+            band_colour: req.body.band_colour,
+            quantity: req.body.quantity,
             
           });
           newProduct.save(function (err, newProduct) {
@@ -66,6 +68,20 @@ var functions = {
             } catch (err) {
               res.send("Error" + err);
             }
+          },
+    decreaseQuantity: async function (req, res) {
+      product.updateOne({ _id: req.body.id}, { $inc: {quantity:-1}}, function(
+        err,
+        result
+      ) {
+        if (err) {
+          res.send(err);
+        } else {
+          res.json(result);
+        }
+      });
+      
+        
           },
 
     deleteProduct: async function (req, res) {

@@ -9,6 +9,7 @@ router.get('/', (req, res) => {
 })
 
 router.post('/product', actions.addProduct)
+router.post('/decreaseQuantity', actions.decreaseQuantity)
 router.get('/products', actions.getProducts)
 router.get('/products/:id', actions.getProductById)
 router.put('/product/:id', actions.updateProduct)

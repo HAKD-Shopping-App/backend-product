@@ -31,6 +31,11 @@ var productSchema = new Schema({
         type: Number,
         required: true,
         trim: true
+    },
+    seller: {
+        type: Object,
+        required: true,
+        trim: true
     }
 
     

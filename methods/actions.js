@@ -11,6 +11,22 @@ var functions = {
           res.send("Error" + err);
         }
       },
+      getProductsMen: async function (req, res) {
+        try {
+          const products = await product.find({category:"men"});
+          res.json(products);
+        } catch (err) {
+          res.send("Error" + err);
+        }
+      },
+      getProductsWomen: async function (req, res) {
+        try {
+          const products = await product.find({category:"women"});
+          res.json(products);
+        } catch (err) {
+          res.send("Error" + err);
+        }
+      },
 
     getProductById: async function (req, res) {
         try {
@@ -25,24 +41,25 @@ var functions = {
 
     addProduct: function (req, res) {
         if (
-          !req.body.category ||
-          !req.body.brand ||
-          !req.body.product_name ||
+          !req.body.cat ||
+          !req.body.bName ||
+          !req.body.name ||
           !req.body.price ||
-          !req.body.band_colour ||
-          !req.body.quantity || !req.body.seller
+          // !req.body.band_colour ||
+          !req.body.quantity 
+          // || !req.body.seller
 
         ) {
           res.json({ success: false, msg: "Enter all fields" });
         } else {
           var newProduct = product({
-            category: req.body.category,
-            brand: req.body.brand,
-            product_name: req.body.product_name,
+            category: req.body.cat,
+            brand: req.body.bName,
+            product_name: req.body.name,
             price: req.body.price,
-            band_colour: req.body.band_colour,
+            band_colour: 'pink',
             quantity: req.body.quantity,
-            seller: req.body.seller,
+            seller: '635a70dc2365613f525238c9',
             
           });
           newProduct.save(function (err, newProduct) {
